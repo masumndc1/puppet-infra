@@ -4,6 +4,7 @@ $packages = [
   'puppet5',
   'iftop',
   'htop',
+  'zsh',
 ]
 
 if ( $facts['os']['family'] == 'FreeBSD' ) 
