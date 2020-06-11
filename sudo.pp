@@ -9,3 +9,7 @@ package { 'sudo':
 file { "/usr/local/etc/sudoers.d/10_$user":
   content => "$user ALL=(ALL:ALL) NOPASSWD: ALL",
 }
+
+notify { "$user":
+  message => "$user added"
+}
