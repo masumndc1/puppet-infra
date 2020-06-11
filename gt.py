@@ -20,7 +20,7 @@ class GitOperation():
       print(term.red + "%20s" % "You want to pull updates from upstreams. Pulling update" + term.normal)
       print(term.red + "%20s" % "If you dont want to pull, then usage is:" + term.normal)
       print(term.red + "%20s" % "python3 gt.py \"commit msg\"" + term.normal)
-      os.system('git pull')
+      os.system('git pull --rebase')
 
   @classmethod
   def GitPullPush(cls, msg):
