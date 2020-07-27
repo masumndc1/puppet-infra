@@ -29,3 +29,8 @@ node default {
   # Example:
   #   class { 'my_class': }
 }
+
+node production {
+  include profile::base
+
+}
