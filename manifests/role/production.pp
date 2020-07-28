@@ -1,3 +1,3 @@
-class role::production {
-  include profile::production
+class production {
+  include profile::base
 }

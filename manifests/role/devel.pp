@@ -1,3 +1,3 @@
-class role::devel {
+class devel {
   include profile::base
 }  

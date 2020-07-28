@@ -1,4 +1,10 @@
-class profile::base {
-  include profile::if
-  include profile::sudo
+class base {
+  include partition
+  include sudo
+  include hostname
+  include update
+  include user
+  include packages
+  include puppetservice
+  include upgrade
 }
