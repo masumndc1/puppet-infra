@@ -1,4 +1,4 @@
-class packages {
+class freebsd::packages {
   $packages = [
     'vim',
     'git',

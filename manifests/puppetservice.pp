@@ -1,6 +1,6 @@
-class puppetservice {
+class freebsd::puppetservice {
 #keeping service up
-  package { 'puppet':
+  package { 'puppet5':
     ensure => 'latest',
     before => Service['puppet'],
   }
@@ -8,7 +8,7 @@ class puppetservice {
   service { 'puppet':
     enable  => 'true',
     ensure  => 'running',
-    require => Package['puppet'],
+    require => Package['puppet5'],
     tag     => 'puppet',
   }
 }

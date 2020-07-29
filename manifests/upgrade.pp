@@ -1,4 +1,4 @@
-class upgrade {
+class freebsd::upgrade {
 #updrading freebsd daily, nightly
   schedule { 'nightly':
     period => 'daily',

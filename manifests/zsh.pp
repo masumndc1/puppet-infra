@@ -1,4 +1,4 @@
-class zsh {
+class freebsd::zsh {
 # manage user
   package {'zsh':
     ensure => 'latest',

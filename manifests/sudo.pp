@@ -1,4 +1,4 @@
-class sudo {
+class freebsd::sudo {
 #installing and configure sudo and add user in it
   $user = "masum"
 
