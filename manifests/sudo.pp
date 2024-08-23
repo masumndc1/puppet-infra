@@ -1,6 +1,6 @@
-class freebsd::sudo {
+class infra::sudo {
 #installing and configure sudo and add user in it
-  $user = "masum"
+  $user = "khabir"
 
   package { 'sudo':
     ensure => 'present',

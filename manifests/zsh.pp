@@ -1,4 +1,4 @@
-class freebsd::zsh {
+class infra::zsh {
 # manage user
   package {'zsh':
     ensure => 'latest',
@@ -6,7 +6,7 @@ class freebsd::zsh {
   }
 
   user { 'masum':
-    shell   => '/usr/local/bin/zsh',
+    shell   => '/bin/zsh',
     require => Package['zsh'],
   }
 }

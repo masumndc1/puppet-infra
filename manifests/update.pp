@@ -1,4 +1,4 @@
-class freebsd::update {
+class infra::update {
 # example of if/elsif/else block
   if ( $facts['os']['family'] == 'FreeBSD' )
     and ( $facts['os']['name'] == 'FreeBSD' )

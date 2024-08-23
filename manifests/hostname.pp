@@ -1,4 +1,4 @@
-class freebsd::hostname {
+class infra::hostname {
   notify { 'MD5_hash':
     message => md5( $facts['fqdn'] )
   }
