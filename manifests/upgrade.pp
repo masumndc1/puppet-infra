@@ -1,11 +1,13 @@
-class freebsd::upgrade {
-#updrading freebsd daily, nightly
+class infra::upgrade {
+# upgrading ubuntu daily, nightly
   schedule { 'nightly':
     period => 'daily',
     range  => '21 - 22',
   }
 
-  exec { '/usr/sbin/pkg upgrade -y':
-    schedule => 'nightly',
+  if ( $facts['os']['name'] == 'Debian') {
+    exec { 'apt upgrade -y':
+      schedule => 'nightly',
+    }
   }
 }
