@@ -6,7 +6,7 @@ class infra::sudo {
     ensure => 'present',
   }
 
-  file { "/usr/local/etc/sudoers.d/10_$user":
+  file { "/etc/sudoers.d/10_$user":
     content => "$user ALL=(ALL:ALL) NOPASSWD: ALL",
     require => Package['sudo'],
   }
