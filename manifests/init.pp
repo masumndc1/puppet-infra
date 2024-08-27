@@ -1,7 +1,8 @@
 class infra {
-  include infra::packages
   include infra::hostname
-  include infra::zsh
+  include infra::neovim
+  include infra::packages
   include infra::partition
   include infra::sudo
+  include infra::zsh
 }
