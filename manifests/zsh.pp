@@ -1,12 +1,21 @@
 class infra::zsh {
-# manage user
-  package {'zsh':
+  $_localuser = hiera('localuser')
+  package { 'zsh':
     ensure => 'latest',
-    before => User['masum'],
+    before => User["$_localuser"],
   }
 
-  user { 'masum':
+  user { "$_localuser":
     shell   => '/bin/zsh',
+    require => Package['zsh'],
+  }
+  
+  file { "/home/$_localuser/.zshrc":
+    ensure  => 'file',
+    content => "export RUBYOPT='-W0'",
+    mode    => '0644',
+    group   => "$_localuser",
+    owner   => "$_localuser",
     require => Package['zsh'],
   }
 }
