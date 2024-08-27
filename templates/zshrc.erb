@@ -1,0 +1,101 @@
+export RUBYOPT='-W0'
+if [[ -d "$HOME/.oh-my-zsh" ]]; then
+    export ZSH="$HOME/.oh-my-zsh"
+    source $ZSH/oh-my-zsh.sh
+    # export LANG=en_US.UTF-8
+else
+    sh -c "$(curl -fsSL \
+        https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+fi
+
+if [[ -d "$HOME/.fzf-tab" ]]; then
+    source $HOME/.fzf-tab/fzf-tab.plugin.zsh
+else
+    git clone https://github.com/Aloxaf/fzf-tab $HOME/.fzf-tab
+fi
+
+if [[ -d "$HOME/.fast-syntax-highlighting" ]]; then
+    source $HOME/.fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
+else
+    git clone https://github.com/zdharma-continuum/fast-syntax-highlighting \
+        $HOME/.fast-syntax-highlighting
+fi
+
+if [[ -f $HOME/.local/bin/pdm ]]; then
+    export PATH=$HOME/.local/bin:$PATH
+fi
+
+if [[ -f $HOME/.zplug/init.zsh ]]; then
+    source $HOME/.zplug/init.zsh
+    zplug "romkatv/powerlevel10k", as:theme, depth:1
+    zplug "zsh-users/zsh-history-substring-search"
+    zplug "zsh-users/zsh-syntax-highlighting", defer:2
+    zplug "zsh-users/zsh-autosuggestions"
+    zplug "zsh-users/zsh-completions"
+    zplug "zsh-users/zaw"
+    zplug "supercrabtree/k"
+    zplug "skywind3000/z.lua"
+    zplug "jhawthorn/fzy"
+    zplug "agkozak/zsh-z"
+    zplug "belak/zsh-utils"
+    zplug "plugins/git", from:oh-my-zsh
+    zplug "plugins/github", from:oh-my-zsh
+    zplug "plugins/fsad", from:oh-my-zsh
+    zplug "zplug/zplug"
+
+    if ! zplug check --verbose ; then
+        printf "Install? [y/N]: "
+            if read -q; then
+                echo; zplug install
+            fi
+    fi
+    zplug load
+
+    plugins=( git
+    )
+else
+    curl -sL --proto-redir -all,https \
+        https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
+fi
+
+# Add wisely, as too many plugins slow down shell startup.
+
+if [[ `uname` == "Linux" ]]; then
+   if [[ -f /usr/bin/apt ]]; then
+      if [[ ! -z `uname -v | grep -i debian` ]]; then
+         if [[ ! -f /usr/bin/exa ]]; then
+                    sudo apt-get install exa
+         fi
+                alias ll="exa --icons -l"
+                alias ls="exa --icons"
+                alias lt="exa --tree -a -I '.git|__pycache__|.mypy_cache|.ipynb_checkpoints'"
+         elif [[ ! -z `uname -v | grep -i ubuntu` ]]; then
+                if [[ ! -f /usr/bin/lsd ]]; then
+                    sudo snap install lsd
+                fi
+                alias ll="lsd -l"
+                alias ls="lsd"
+                alias lt="lsd --tree -a -I '.git|__pycache__|.mypy_cache|.ipynb_checkpoints'"
+         else
+                echo "Unknown OS"
+         fi
+
+         if [[ ! -f /usr/bin/batcat ]]; then
+                sudo apt install -y bat
+         fi
+
+         if [[ ! -f /usr/bin/fzf ]]; then
+                sudo apt install -y fzf ripgrep
+         else
+                source /usr/share/doc/fzf/examples/key-bindings.zsh
+                source /usr/share/doc/fzf/examples/completion.zsh
+                export FZF_DEFAULT_COMMAND='rg --hidden --no-ignore --files -g "!.git/"'
+                export FZF_CTRL_T_COMMAND=$FZF_DEFAULT_COMMAND
+                export FZF_DEFAULT_OPTS='--height 80% --layout=reverse --border --color=dark'
+                alias fp="fzf --preview 'batcat --style=numbers --color=always --line-range :500 {}'"
+         fi
+      fi
+   fi
+fi
+
+alias nvim='/snap/nvim/current/usr/bin/nvim'
