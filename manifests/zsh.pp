@@ -12,7 +12,7 @@ class infra::zsh {
   
   file { "/home/$_localuser/.zshrc":
     ensure  => 'file',
-    content => "export RUBYOPT='-W0'",
+    content => template('infra/zshrc.erb'),
     mode    => '0644',
     group   => "$_localuser",
     owner   => "$_localuser",
