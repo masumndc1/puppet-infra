@@ -1,16 +1,13 @@
 class infra::packages {
-  $packages = [
-    'vim',
-    'git',
-    'iftop',
-    'htop',
-  ]
+  $_packages = hiera('packages')
 
   if ( $facts['os']['family'] == 'Debian' )
     and ( $facts['os']['name'] == 'Ubuntu' ) {
-      package { $packages:
-        ensure => 'latest',
+    $_packages.each | $pkg | {
+      package { $pkg:
+        ensure => 'installed',
         tag    => 'pkg',
       }
+    }
   }
 }
