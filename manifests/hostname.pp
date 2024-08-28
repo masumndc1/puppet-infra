@@ -1,4 +1,5 @@
 class infra::hostname {
+  $_os = lookup('whatos')
   notify { 'MD5_hash':
     message => md5( $facts['fqdn'] )
   }
