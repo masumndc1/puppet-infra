@@ -6,6 +6,6 @@ class infra::hostname {
   $result = "The MD5 hash for the node name is ${md5( $facts['fqdn'] )}"
 
   notify { 'nodename_hash':
-    message => "$result"
+    message => "$result and os is $_os"
   }
 }
