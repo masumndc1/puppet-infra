@@ -1,12 +1,4 @@
-if [[ -d "$HOME/.oh-my-zsh" ]]; then
-    export ZSH="$HOME/.oh-my-zsh"
-    source $ZSH/oh-my-zsh.sh
-    # export LANG=en_US.UTF-8
-else
-    sh -c "$(curl -fsSL \
-        https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-fi
-
+export RUBYOPT='-W0'
 if [[ -d "$HOME/.fzf-tab" ]]; then
     source $HOME/.fzf-tab/fzf-tab.plugin.zsh
 else
@@ -39,5 +31,4 @@ if [[ `uname` == "Linux" ]]; then
    fi
 fi
 
-export RUBYOPT='-W0'
 alias nvim='/snap/nvim/current/usr/bin/nvim'
