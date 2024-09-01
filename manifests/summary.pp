@@ -1,4 +1,5 @@
 class infra::summary (
+  $_hostname = $facts['hostname'],
   $_arch = $facts['os']['architecture'],
   $_uptime = $facts['system_uptime']['uptime'],
   $_family = $facts['os']['family'],
