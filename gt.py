@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # this is a simple python script to automate
 # git pull, commit and push
-# 
+#
 
 import os
 import sys
@@ -12,11 +12,11 @@ class GitOperation():
   term = Terminal()
 
   def __init__(self):
-    if len(sys.argv) == 2: 
+    if len(sys.argv) == 2:
       self.msg = sys.argv[1]
       GitOperation.GitPullPush(self.msg)
 
-    elif len(sys.argv) < 2: 
+    elif len(sys.argv) < 2:
       print(term.red + "%20s" % "You want to pull updates from upstreams. Pulling update" + term.normal)
       print(term.red + "%20s" % "If you dont want to pull, then usage is:" + term.normal)
       print(term.red + "%20s" % "python3 gt.py \"commit msg\"" + term.normal)
@@ -27,7 +27,7 @@ class GitOperation():
     GitOperation.GitPrint('*')
     os.system ('git add .')
     print(term.blue + "%20s" % "Commiting with msg: " + "'" + msg + "'" + term.cyan)
-    os.system('git commit -m "%s"' % msg) 
+    os.system('git commit -m "%s"' % msg)
     print(term.red + "%s" % "Pulling before pushing")
     os.system('git pull --rebase')
     print(term.green + "%20s" % "Pushing now to upstream " + term.cyan)

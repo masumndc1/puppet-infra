@@ -9,7 +9,7 @@ class infra::zsh {
     shell   => '/bin/zsh',
     require => Package['zsh'],
   }
-  
+
   file { "/home/$_localuser/.zshrc":
     ensure  => 'file',
     content => template('infra/zshrc.erb'),
