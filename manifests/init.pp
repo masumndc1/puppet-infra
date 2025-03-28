@@ -6,4 +6,5 @@ class infra {
   include infra::sudo
   include infra::summary
   include infra::zsh
+  include infra::message
 }
