@@ -16,7 +16,7 @@ class infra::hostname {
     message => "$result"
   }
 
-  infra::pkg_ver {$_pkg:
-    pkg => $_pkg,
-  }
+  #infra::pkg_ver {$_pkg:
+  #  pkg => $_pkg,
+  #}
 }
