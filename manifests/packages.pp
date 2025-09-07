@@ -1,5 +1,5 @@
 class infra::packages {
-  $_packages = hiera('packages')
+  $_packages = lookup('packages')
 
   if ( $facts['os']['family'] == 'Debian' )
     and ( $facts['os']['name'] == 'Ubuntu' ) {

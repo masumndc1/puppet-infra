@@ -1,5 +1,5 @@
 class infra::zsh {
-  $_localuser = hiera('localuser')
+  $_localuser = lookup('localuser')
   package { 'zsh':
     ensure => 'latest',
     before => User["$_localuser"],
