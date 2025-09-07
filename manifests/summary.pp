@@ -7,7 +7,7 @@ class infra::summary (
   $_release = $facts['os']['release']['full'],
   $_distro = $facts['os']['distro']['codename']
 ) {
-  file { '/home/root/summary.txt':
+  file { "/tmp/summary.txt":
     content => template('infra/summary.erb')
   }
 }
