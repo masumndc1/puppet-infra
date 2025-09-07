@@ -1,17 +1,18 @@
 class infra::sudo {
 #installing and configure sudo and add user in it
-  $user = "khabir"
+  $backupuser = lookup('backup_user')
 
   package { 'sudo':
     ensure => 'present',
   }
 
-  file { "/etc/sudoers.d/10_$user":
-    content => "$user ALL=(ALL:ALL) NOPASSWD: ALL",
-    require => Package['sudo'],
+  user { "$backupuser":
+    ensure => 'present',
+    managehome => 'true',
   }
 
-  notify { "$user":
-    message => "$user added"
+  file { "/etc/sudoers.d/10_$backupuser":
+    content => "$backupuser ALL=(ALL:ALL) NOPASSWD: ALL",
+    require => Package['sudo'],
   }
 }
